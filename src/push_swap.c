@@ -6,22 +6,17 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/08 13:15:11 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/08 15:12:42 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-
-int	main(void)
+int	main(int argc, char **argv)
 {
-	print_move("rra");
-	print_move("pa");
-	print_move("pa");
-	error();
-
-
+	if (argc < 3)
+		error();
+	print_move(argv[2]);
 }
 
 /* moves:
@@ -43,4 +38,4 @@ rra (reverse rotate a): Shift down all elements of stack a by 1.
 The last element becomes the first one.
 rrb (reverse rotate b): Shift down all elements of stack b by 1.
 The last element becomes the first one.
-rrr : rra and rrb at the same time.
+rrr : rra and rrb at the same time.*/
