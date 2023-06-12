@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/08 15:12:42 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/12 17:31:32 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,13 @@
 
 int	main(int argc, char **argv)
 {
+
 	if (argc < 3)
 		error();
-	print_move(argv[2]);
+	if (check_input(argv, argc))
+		error();
+	store_input(argv, argc);
+//	print_move(argv[2]);
 }
 
 /* moves:
