@@ -6,35 +6,30 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/12 17:39:28 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:35:21 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int	store_input(char **argv, int argc)
+t_stack	*store_input(char **argv, int argc)
 {
-	int	*nums;
-	int	counter;
-	int	i;
+	t_stack	*stack;
+	int		counter;
 
-	nums = NULL;
 	counter = 1;
-	i = 0;
-	// tee stackista ihan linked list eika array
-	// just a sketch fn
-	nums = malloc(sizeof(int) * argc);
+	create_stack(&stack);
+	stack->stack_id = 'a';
 	while (counter < argc)
 	{
-		nums[i] = ft_atoi(argv[counter]);
-		i++;
+		ft_addtoend(stack, ft_newnode(ft_atoi(argv[counter])));
 		counter++;
 	}
-	i = 0;
-	while (i < counter)
-		ft_printf("%d\n", nums[i++]);
-	free(nums);
-	return (0);
+	if (check_if_sorted(stack))
+		error();
+	if (check_duplicates(stack))
+		error();
+	return (stack);
 }
 
 int	check_input(char **argv, int argc)
@@ -56,7 +51,46 @@ int	check_input(char **argv, int argc)
 		}
 		arg++;
 	}
-	return(0);
+	return (0);
+}
 
-	
+int check_if_sorted(t_stack *stack)
+{
+	int		temp;
+	int		count;
+	t_node	*curr;
+
+	count = 0;
+	curr = stack->top;
+	temp = curr->data;
+	while (curr->next != NULL)
+	{
+		curr = curr->next;
+		if (curr->data > temp)
+		{
+			temp = curr->data;
+			count++;
+		}
+	}
+	if (curr->data > temp)
+		count++;
+	if (count == curr->place)
+		return (1);
+	return (0);
+}
+
+int check_duplicates(t_stack *stack)
+{
+	int temp;
+	t_node *curr;
+
+	curr = stack->top;
+	while (curr->next != NULL)
+	{
+		temp = curr->data;
+		if (scan_stack(stack, temp))
+			return (1);
+		curr = curr->next;
+	}
+	return (0);
 }
