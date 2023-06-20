@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:34:25 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/14 17:35:17 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:41:53 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	ft_addtoend(t_stack *stack, t_node *node)
 
 void	ft_addtotop(t_stack *stack, t_node *node)
 {
-	t_node *temp;
-	
+	t_node	*temp;
+
 	if (stack->size == 0)
 	{
 		stack->top = node;
@@ -98,12 +98,14 @@ void	print_stack(t_stack *stack)
 	t_node *curr;
 
 	ft_printf("stack id: %c, stack size %d\n", stack->stack_id, stack->size);
+	if (stack->size == 0)
+		return;
 	curr = stack->top;
-	ft_printf("node place %d, node content: %d\n", curr->place, curr->data);
+	ft_printf("node place %d, node content: %d,  node index: %d\n\n", curr->place, curr->data);
 	while (curr->next != NULL)
 	{
 		curr = curr->next;
-		ft_printf("node place %d, node content: %d\n", curr->place, curr->data);
+		ft_printf("node place %d, node content: %d, node index: %d\n", curr->place, curr->data, curr->index);
 	}
 
 }

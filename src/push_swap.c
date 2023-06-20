@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/14 17:05:55 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:26:08 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,12 @@ int	main(int argc, char **argv)
 		error();
 	stack_a = store_input(argv, argc);
 	create_stack(&stack_b);
+		// print_stack(stack_a);
+
 	stack_b->stack_id = 'b';
-// 	print_stack(stack_a);
+	if (stack_a->size == 3)
+		sort_three(stack_a);
+	print_stack(stack_a);
 // 	reverse_rotate(stack_a);
 // 	print_stack(stack_a);
 // 	swap(stack_a);
@@ -39,7 +43,7 @@ int	main(int argc, char **argv)
 // 	//push(stack_b, &stack_a);
 // 	reverse_rotate(stack_b);
 // 	print_stack(stack_a);
-// 	print_stack(stack_b);
+	//print_stack(stack_b);
 // 	push(stack_b, stack_a);
 // 	print_stack(stack_a);
 // 	print_stack(stack_b);

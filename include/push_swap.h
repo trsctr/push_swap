@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:03:32 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/14 17:35:36 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/20 17:39:08 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 typedef struct s_node {
 	int				data;
+	int				index;
 	int				place;
 	struct s_node	*prev;
 	struct s_node	*next;
@@ -39,6 +40,7 @@ t_stack	*store_input(char **argv, int argc);
 int		check_input(char **argv, int argc);
 int		check_if_sorted(t_stack *stack);
 int		check_duplicates(t_stack *stack);
+void convert_input(t_stack *stack);
 
 
 
@@ -59,5 +61,8 @@ void	rotate(t_stack *stack);
 void	reverse_rotate(t_stack *stack);
 void	push(t_stack *src, t_stack *dst);
 
+//
+
+void	sort_three(t_stack *stack_a);
 
 #endif

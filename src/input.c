@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/14 17:35:21 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/20 18:03:03 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_stack	*store_input(char **argv, int argc)
 		error();
 	if (check_duplicates(stack))
 		error();
+	convert_input(stack);
 	return (stack);
 }
 
@@ -93,4 +94,66 @@ int check_duplicates(t_stack *stack)
 		curr = curr->next;
 	}
 	return (0);
+}
+
+void swap_ints(int *a, int *b)
+{
+	int temp = *a;
+
+	*a = *b;
+	*b = temp;
+}
+
+void convert_input(t_stack *stack)
+{
+	int numbers[stack->size + 1];
+	int i;
+	int j;
+	t_node *curr;
+	t_node *temp;
+	//int min_idx;
+	curr = stack->top;
+	i = 0;
+	while (curr->next != NULL)
+	{
+		numbers[i] = curr->data;
+		i++;
+		curr = curr->next;
+	}
+	numbers[i] = curr->data;
+	i = 0;
+	while (i < stack->size)
+	{
+
+		j = i + 1;
+		while (j < stack->size)
+		{
+			if (numbers[i] > numbers[j])
+				swap_ints(&numbers[j], &numbers[i]);
+			j++;
+		}
+		i++;
+	}
+	i = 0;
+	curr = stack->top;
+	while (i <= stack->size)
+	{
+		j = i + 1;
+		if(curr->data == numbers[i])
+			curr->data = j;
+		else 
+		{	
+			temp = curr;
+			while(temp->next)
+			{
+				if(temp->data == numbers[i])
+					temp->data = j;
+				temp = temp->next;
+			}
+		}
+		i++;
+		if(curr->next)
+			curr = curr->next;
+
+	}
 }
