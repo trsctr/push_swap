@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 18:46:06 by oandelin          #+#    #+#             */
-/*   Updated: 2023/04/08 13:13:00 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:14:20 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int		ft_toupper(int c);
 //		STR
 
 int		ft_atoi(const char *str);
+long	ft_atol(const char *str);
 char	*ft_itoa(int n);
 char	**ft_split(char const *s, char c);
 char	*ft_strchr(const char *str, int c);

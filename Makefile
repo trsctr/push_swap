@@ -6,14 +6,14 @@
 #    By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 16:51:49 by oandelin          #+#    #+#              #
-#    Updated: 2023/06/20 16:32:19 by oandelin         ###   ########.fr        #
+#    Updated: 2023/06/22 14:44:35 by oandelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME 		= 	push_swap
 CC			= 	cc
 CFLAGS		= 	-Wall -Werror -Wextra
-DBFLAGS		=	-g -fsanitize=adress
+DBFLAGS		=	-g -fsanitize=address
 LIBFT 		= 	libft/libft.a
 SRCDIR		=	src/
 SRCFILES	= 	push_swap.c output.c input.c stack.c moves.c sort.c
@@ -29,7 +29,7 @@ $(NAME): $(SRCS)
 	@$(CC) $(CFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 	@echo "Done!"
 
-$(DEBUG):
+debug:
 	make -C libft
 	$(CC) $(CFLAGS) $(DBFLAGS) $(SRCS) $(LIBFT) -o $(NAME)
 

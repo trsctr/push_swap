@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/20 18:03:03 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/22 18:53:42 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,45 @@
 t_stack	*store_input(char **argv, int argc)
 {
 	t_stack	*stack;
+	char	**args;
 	int		counter;
-
+	long	num;
+	
+	args = NULL;
 	counter = 1;
 	create_stack(&stack);
 	stack->stack_id = 'a';
-	while (counter < argc)
-	{
-		ft_addtoend(stack, ft_newnode(ft_atoi(argv[counter])));
-		counter++;
+	if (argc > 2) 
+	{	
+		counter = 1;
+		while (counter < argc)
+		{
+			num = ft_atol(argv[counter]);
+			if(num > INT_MAX || num < INT_MIN)
+				error();
+			ft_addtoend(stack, ft_newnode((int)num));
+			counter++;
+		}
 	}
+	else
+	{
+		counter = 0;
+		args = ft_split(argv[1], ' ');
+		while(args[counter])
+		{
+			num = ft_atoi(args[counter]);
+			if(num > INT_MAX || num < INT_MIN)
+				error();
+			ft_addtoend(stack, ft_newnode((int)num));
+			free(args[counter]);
+			counter++;
+		}
+	}
+	free(args);
 	if (check_if_sorted(stack))
-		error();
+	 	exit(0);
 	if (check_duplicates(stack))
-		error();
+	 	error();
 	convert_input(stack);
 	return (stack);
 }
@@ -46,7 +71,7 @@ int	check_input(char **argv, int argc)
 			digit++;
 		while (argv[arg][digit])
 		{
-			if (!ft_isdigit(argv[arg][digit]))
+			if (!ft_isdigit(argv[arg][digit]) && argv[arg][digit] != '-' && argv[arg][digit] != ' ')
 				return (-1);
 			digit++;
 		}
@@ -104,14 +129,30 @@ void swap_ints(int *a, int *b)
 	*b = temp;
 }
 
+int set_index(int value, int *numbers, int size)
+{
+	int i;
+	
+	i = 0;
+	while (i <= size)
+	{
+		if (value == numbers[i])
+		{
+			return(i+1);
+		}
+		i++;
+	}
+	return(-1);
+}
 void convert_input(t_stack *stack)
 {
-	int numbers[stack->size + 1];
+	int *numbers;
 	int i;
 	int j;
 	t_node *curr;
-	t_node *temp;
 	//int min_idx;
+
+	numbers = malloc(sizeof(int)*stack->size);
 	curr = stack->top;
 	i = 0;
 	while (curr->next != NULL)
@@ -136,24 +177,12 @@ void convert_input(t_stack *stack)
 	}
 	i = 0;
 	curr = stack->top;
-	while (i <= stack->size)
+	while (curr->next)
 	{
-		j = i + 1;
-		if(curr->data == numbers[i])
-			curr->data = j;
-		else 
-		{	
-			temp = curr;
-			while(temp->next)
-			{
-				if(temp->data == numbers[i])
-					temp->data = j;
-				temp = temp->next;
-			}
-		}
-		i++;
-		if(curr->next)
-			curr = curr->next;
-
+		curr->data = set_index(curr->data, numbers, stack->size);
+		curr = curr->next;
 	}
+	curr->data = set_index(curr->data, numbers, stack->size);
+	free(numbers);
 }
+

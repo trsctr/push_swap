@@ -6,7 +6,7 @@
 #    By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 16:51:49 by oandelin          #+#    #+#              #
-#    Updated: 2023/06/07 12:42:04 by oandelin         ###   ########.fr        #
+#    Updated: 2023/06/22 18:13:47 by oandelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ SRCFILES 	= 	ft_isalpha \
 				ft_memcmp \
 				ft_strnstr \
 				ft_atoi \
+				ft_atol \
 				ft_calloc \
 				ft_strdup \
 				ft_substr \

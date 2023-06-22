@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:34:25 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/20 17:41:53 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:28:37 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,11 +101,28 @@ void	print_stack(t_stack *stack)
 	if (stack->size == 0)
 		return;
 	curr = stack->top;
-	ft_printf("node place %d, node content: %d,  node index: %d\n\n", curr->place, curr->data);
+	ft_printf("node place %d, node content: %d\n", curr->place, curr->data);
 	while (curr->next != NULL)
 	{
 		curr = curr->next;
-		ft_printf("node place %d, node content: %d, node index: %d\n", curr->place, curr->data, curr->index);
+		ft_printf("node place %d, node content: %d\n", curr->place, curr->data);
 	}
 
+}
+
+void destroy_stack(t_stack *stack)
+{
+	t_node *curr;
+	
+	curr = stack->top;
+	while(curr->next)
+	{
+		free(curr);
+		curr = curr->next;
+	}
+	free(stack->end);
+	free(stack);
+
+
+	
 }
