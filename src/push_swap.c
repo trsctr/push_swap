@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: trsctr <trsctr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/22 19:30:14 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:31:38 by trsctr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		error();
 	stack_a = store_input(argv, argc);
 	create_stack(&stack_b);
-		// print_stack(stack_a);
+	print_stack(stack_a);
 
 	stack_b->stack_id = 'b';
 	if (stack_a->size == 3)
@@ -66,7 +66,6 @@ int	main(int argc, char **argv)
 	
 
 // //	print_move(argv[2]);
-
 destroy_stack(stack_a);
 free(stack_b);
 }

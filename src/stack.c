@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: trsctr <trsctr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:34:25 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/22 15:28:37 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/23 13:50:55 by trsctr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,16 @@ void	print_stack(t_stack *stack)
 void destroy_stack(t_stack *stack)
 {
 	t_node *curr;
-	
+	t_node *temp;
+
 	curr = stack->top;
 	while(curr->next)
 	{
-		free(curr);
+		temp = curr;
+		free(temp);
 		curr = curr->next;
 	}
 	free(stack->end);
 	free(stack);
-
-
-	
 }
+

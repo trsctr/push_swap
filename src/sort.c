@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: trsctr <trsctr@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:32:51 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/22 19:36:51 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/24 14:34:06 by trsctr           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,30 +71,60 @@ void	sort_four(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
-	if(stack_a->size == 3)
+	if(check_if_sorted(stack_a))
+			exit(0);
+	if (stack_a->top->data == 1)
 	{
-		sort_three(stack_a);
-		pa(stack_a, stack_b);
-		pa(stack_)
+		push(stack_a, stack_b);
+		sort_four(stack_a, stack_b);
+		push(stack_b, stack_a);
 	}
-	if (stack_a->top->data == 1 || stack_a->top->data == 2)
- 	{
-		pb(stack_a, stack_b);
+	else if (stack_a->top->next->data == 1)
+	{
+		move_sa_sb(stack_a);
+		if(check_if_sorted(stack_a))
+			return ;
+		else sort_five(stack_a, stack_b);
+	}
+	else if (stack_a->end->data == 1)
+	{
+		move_rra_rrb(stack_a);
+		if(check_if_sorted(stack_a))
+			return ;
+		else sort_five(stack_a, stack_b);
+	}
+	else
+	{
+		move_ra_rb(stack_a);
 		sort_five(stack_a, stack_b);
 	}
-	// else if (stack_a->end->data == 1 || stack_a->end->data == 2)
-	// {
-	// 	move_rra_rrb(stack_a);
-	// 	pb(stack_a, stack_b);
-	// 	sort_four(stack_a, stack_b);
-	// }
-	// else 
-	// {
-	// 	move_ra_rb(stack_a);
-	// 	sort_five(stack_a, stack_b);
-	// }
-	
+	if(check_if_sorted(stack_a))
+		return ;
 }
+
+// 	if(stack_a->size == 3)
+// 	{
+// 		sort_three(stack_a);
+// 		pa(stack_a, stack_b);
+// 	}
+// 	if (stack_a->top->data == 1 || stack_a->top->data == 2)
+//  	{
+// 		pb(stack_a, stack_b);
+// 		sort_five(stack_a, stack_b);
+// 	}
+// 	// else if (stack_a->end->data == 1 || stack_a->end->data == 2)
+// 	// {
+// 	// 	move_rra_rrb(stack_a);
+// 	// 	pb(stack_a, stack_b);
+// 	// 	sort_four(stack_a, stack_b);
+// 	// }
+// 	// else 
+// 	// {
+// 	// 	move_ra_rb(stack_a);
+// 	// 	sort_five(stack_a, stack_b);
+// 	// }
+	
+// }
 
 // }
 
