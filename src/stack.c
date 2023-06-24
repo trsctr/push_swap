@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: trsctr <trsctr@student.42.fr>              +#+  +:+       +#+        */
+/*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 16:34:25 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/23 13:50:55 by trsctr           ###   ########.fr       */
+/*   Updated: 2023/06/24 17:13:05 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	ft_addtotop(t_stack *stack, t_node *node)
 		temp = temp->next;
 		temp->place += 1;
 	}
-
 }
 
 int	scan_stack(t_stack *stack, int data)
@@ -125,4 +124,3 @@ void destroy_stack(t_stack *stack)
 	free(stack->end);
 	free(stack);
 }
-

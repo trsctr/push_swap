@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:03:32 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/22 19:20:43 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/24 20:25:55 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		check_input(char **argv, int argc);
 int		check_if_sorted(t_stack *stack);
 int		check_duplicates(t_stack *stack);
 void	convert_input(t_stack *stack);
+int		another_error_check(char **input);
 
 
 
@@ -70,8 +71,8 @@ void	move_rra_rrb(t_stack *stack);
 void	move_rrr(t_stack *stack_a, t_stack *stack_b);
 
 //
-void radix(t_stack *stack_a, t_stack *stack_b);
 
+void	radix(t_stack *stack_a, t_stack *stack_b);
 void	sort_three(t_stack *stack_a);
 void	sort_four(t_stack *stack_a, t_stack *stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);

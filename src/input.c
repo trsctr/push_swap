@@ -6,11 +6,12 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/22 18:53:42 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/06/24 21:13:19 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include <stdio.h>
 
 t_stack	*store_input(char **argv, int argc)
 {
@@ -18,9 +19,10 @@ t_stack	*store_input(char **argv, int argc)
 	char	**args;
 	int		counter;
 	long	num;
-	
+	int		i;
+
+	i = 0;
 	args = NULL;
-	counter = 1;
 	create_stack(&stack);
 	stack->stack_id = 'a';
 	if (argc > 2) 
@@ -38,10 +40,16 @@ t_stack	*store_input(char **argv, int argc)
 	else
 	{
 		counter = 0;
+		while(argv[1][i] == ' ')
+			i++;
+		if(argv[1][i] == '\0')
+			error();
 		args = ft_split(argv[1], ' ');
+		if(another_error_check(args))
+			error();
 		while(args[counter])
 		{
-			num = ft_atoi(args[counter]);
+			num = ft_atol(args[counter]);
 			if(num > INT_MAX || num < INT_MIN)
 				error();
 			ft_addtoend(stack, ft_newnode((int)num));
@@ -51,11 +59,35 @@ t_stack	*store_input(char **argv, int argc)
 	}
 	free(args);
 	if (check_if_sorted(stack))
-	 	exit(0);
+		exit(0);
 	if (check_duplicates(stack))
-	 	error();
+		error();
 	convert_input(stack);
 	return (stack);
+}
+
+int	another_error_check(char **input)
+{
+	int arg;
+	int digit;
+
+	arg = 0;
+	while (input[arg])
+	{
+		digit = 0;
+		if (input[arg][0] == '-')
+			digit++;
+		if (input[arg][digit] == '\0')
+			return (-1);
+		while (input[arg][digit])
+		{
+			if (!ft_isdigit(input[arg][digit]))
+				return (-1);
+			digit++;
+		}
+		arg++;
+	}
+	return (0);
 }
 
 int	check_input(char **argv, int argc)
@@ -69,9 +101,11 @@ int	check_input(char **argv, int argc)
 		digit = 0;
 		if (argv[arg][0] == '-')
 			digit++;
+		if (argv[arg][digit] == '\0')
+			return(-1);
 		while (argv[arg][digit])
 		{
-			if (!ft_isdigit(argv[arg][digit]) && argv[arg][digit] != '-' && argv[arg][digit] != ' ')
+			if (!ft_isdigit(argv[arg][digit]))
 				return (-1);
 			digit++;
 		}
@@ -138,7 +172,7 @@ int set_index(int value, int *numbers, int size)
 	{
 		if (value == numbers[i])
 		{
-			return(i+1);
+			return(i);
 		}
 		i++;
 	}
