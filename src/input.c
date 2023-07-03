@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/24 21:13:19 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:34:35 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,60 +16,72 @@
 t_stack	*store_input(char **argv, int argc)
 {
 	t_stack	*stack;
-	char	**args;
-	int		counter;
-	long	num;
-	int		i;
 
-	i = 0;
-	args = NULL;
 	create_stack(&stack);
 	stack->stack_id = 'a';
 	if (argc > 2) 
 	{	
-		counter = 1;
-		while (counter < argc)
-		{
-			num = ft_atol(argv[counter]);
-			if(num > INT_MAX || num < INT_MIN)
-				error();
-			ft_addtoend(stack, ft_newnode((int)num));
-			counter++;
-		}
+		store_input_from_args(stack, argv, argc);
 	}
 	else
 	{
-		counter = 0;
-		while(argv[1][i] == ' ')
-			i++;
-		if(argv[1][i] == '\0')
-			error();
-		args = ft_split(argv[1], ' ');
-		if(another_error_check(args))
-			error();
-		while(args[counter])
-		{
-			num = ft_atol(args[counter]);
-			if(num > INT_MAX || num < INT_MIN)
-				error();
-			ft_addtoend(stack, ft_newnode((int)num));
-			free(args[counter]);
-			counter++;
-		}
+		store_input_from_string(stack, argv[1]);
 	}
-	free(args);
-	if (check_if_sorted(stack))
+	if (is_sorted(stack))
 		exit(0);
-	if (check_duplicates(stack))
+	if (has_duplicates(stack))
 		error();
 	convert_input(stack);
 	return (stack);
 }
 
-int	another_error_check(char **input)
+void	store_input_from_args(t_stack *stack, char **argv, int argc)
 {
-	int arg;
-	int digit;
+	int		counter;
+	long	num;
+
+	counter = 1;
+	while (counter < argc)
+	{
+		num = ft_atol(argv[counter]);
+		if (num > INT_MAX || num < INT_MIN)
+			error();
+		ft_addtoend(stack, ft_newnode((int)num));
+		counter++;
+	}	
+}
+
+void	store_input_from_string(t_stack *stack, char *input)
+{
+	int		counter;
+	char	**args;
+	long	num;
+
+	counter = 0;
+	while (input[counter] == ' ')
+		counter++;
+	if (input[counter] == '\0')
+		error();
+	args = ft_split(input, ' ');
+	if (is_valid_input(args))
+		error();
+	counter = 0;
+	while (args[counter])
+	{
+		num = ft_atol(args[counter]);
+		if (num > INT_MAX || num < INT_MIN)
+			error();
+		ft_addtoend(stack, ft_newnode((int)num));
+		free(args[counter]);
+		counter++;
+	}
+	free(args);
+}
+
+int	is_valid_input(char **input)
+{
+	int	arg;
+	int	digit;
 
 	arg = 0;
 	while (input[arg])
@@ -102,7 +114,7 @@ int	check_input(char **argv, int argc)
 		if (argv[arg][0] == '-')
 			digit++;
 		if (argv[arg][digit] == '\0')
-			return(-1);
+			return (-1);
 		while (argv[arg][digit])
 		{
 			if (!ft_isdigit(argv[arg][digit]))
@@ -114,7 +126,7 @@ int	check_input(char **argv, int argc)
 	return (0);
 }
 
-int check_if_sorted(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
 	int		temp;
 	int		count;
@@ -139,10 +151,10 @@ int check_if_sorted(t_stack *stack)
 	return (0);
 }
 
-int check_duplicates(t_stack *stack)
+int	has_duplicates(t_stack *stack)
 {
-	int temp;
-	t_node *curr;
+	int		temp;
+	t_node	*curr;
 
 	curr = stack->top;
 	while (curr->next != NULL)
@@ -157,36 +169,37 @@ int check_duplicates(t_stack *stack)
 
 void swap_ints(int *a, int *b)
 {
-	int temp = *a;
+	int	temp;
 
+	temp = *a;
 	*a = *b;
 	*b = temp;
 }
 
 int set_index(int value, int *numbers, int size)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	while (i <= size)
 	{
 		if (value == numbers[i])
 		{
-			return(i);
+			return (i);
 		}
 		i++;
 	}
-	return(-1);
+	return (-1);
 }
 void convert_input(t_stack *stack)
 {
-	int *numbers;
-	int i;
-	int j;
-	t_node *curr;
+	int		*numbers;
+	int		i;
+	int		j;
+	t_node	*curr;
 	//int min_idx;
 
-	numbers = malloc(sizeof(int)*stack->size);
+	numbers = malloc(sizeof(int) * stack->size);
 	curr = stack->top;
 	i = 0;
 	while (curr->next != NULL)

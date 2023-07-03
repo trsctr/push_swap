@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:03:32 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 11:49:30 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 12:17:02 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,12 @@ void	print_move(char *move, char stack_id);
 
 t_stack	*store_input(char **argv, int argc);
 int		check_input(char **argv, int argc);
-int		check_if_sorted(t_stack *stack);
-int		check_duplicates(t_stack *stack);
+int		is_sorted(t_stack *stack);
+int		has_duplicates(t_stack *stack);
 void	convert_input(t_stack *stack);
-int		another_error_check(char **input);
-
+int	is_valid_input(char **input);
+void	store_input_from_string(t_stack *stack, char *input);
+void	store_input_from_args(t_stack *stack, char **argv, int argc);
 
 
 
