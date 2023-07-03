@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:32:51 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 12:08:49 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:59:52 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	radix_sort(t_stack *stack_a, t_stack *stack_b)
 	int		maxnum;
 	int		bit;
 
-	bit = 0;	
+	bit = 0;
 	maxnum = stack_a->size;
 	while (bit < 9)
 	{	

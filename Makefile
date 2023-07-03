@@ -6,7 +6,7 @@
 #    By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 16:51:49 by oandelin          #+#    #+#              #
-#    Updated: 2023/06/22 14:44:35 by oandelin         ###   ########.fr        #
+#    Updated: 2023/07/03 14:58:11 by oandelin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFLAGS		= 	-Wall -Werror -Wextra
 DBFLAGS		=	-g -fsanitize=address
 LIBFT 		= 	libft/libft.a
 SRCDIR		=	src/
-SRCFILES	= 	push_swap.c output.c input.c stack.c moves.c sort.c
+SRCFILES	= 	push_swap.c output.c input.c stack.c moves.c sort.c convert.c \
+				error_check.c stack_utils.c moves_output.c
 SRCS 		=	$(addprefix $(SRCDIR), $(SRCFILES))
 
 all: $(LIBFT) $(NAME)

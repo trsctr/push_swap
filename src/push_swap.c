@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 12:31:30 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 14:59:24 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	t_stack *stack_a;
+	t_stack	*stack_a;
 	t_stack	*stack_b;
 
 	if (argc < 2)
@@ -35,4 +35,3 @@ int	main(int argc, char **argv)
 	destroy_stack(stack_a);
 	free(stack_b);
 }
-

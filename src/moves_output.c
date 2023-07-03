@@ -1,24 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   output.c                                           :+:      :+:    :+:   */
+/*   moves_output.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/08 13:11:12 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 14:58:32 by oandelin         ###   ########.fr       */
+/*   Created: 2023/07/03 14:57:41 by oandelin          #+#    #+#             */
+/*   Updated: 2023/07/03 14:59:14 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void	error(void)
+void	pa(t_stack *a, t_stack *b)
 {
-	ft_putendl_fd("Error", 2);
-	exit(1);
+	push(b, a);
+	print_move("p", 'a');
 }
 
-void	print_move(char *move, char stack_id)
+void	pb(t_stack *a, t_stack *b)
 {
-	ft_printf("%s%c\n", move, stack_id);
+	push(a, b);
+	print_move("p", 'b');
+}
+
+void	move_sa_sb(t_stack *stack)
+{
+	swap(stack);
+	print_move("s", stack->stack_id);
+}
+
+void	move_ra_rb(t_stack *stack)
+{
+	rotate(stack);
+	print_move("r", stack->stack_id);
+}
+
+void	move_rra_rrb(t_stack *stack)
+{
+	reverse_rotate(stack);
+	print_move("rr", stack->stack_id);
 }
