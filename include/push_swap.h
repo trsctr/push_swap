@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:03:32 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/24 20:25:55 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:49:30 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_addtotop(t_stack *stack, t_node *node);
 void	ft_addtoend(t_stack *stack, t_node *node);
 void	print_stack(t_stack *stack);
 int		scan_stack(t_stack *stack, int data);
-void destroy_stack(t_stack *stack);
+void	destroy_stack(t_stack *stack);
 
 // MOVES
 
@@ -72,7 +72,8 @@ void	move_rrr(t_stack *stack_a, t_stack *stack_b);
 
 //
 
-void	radix(t_stack *stack_a, t_stack *stack_b);
+void	radix_sort(t_stack *stack_a, t_stack *stack_b);
+void	process_bit(t_stack *stack_a, t_stack *stack_b, int bit, int maxnum);
 void	sort_three(t_stack *stack_a);
 void	sort_four(t_stack *stack_a, t_stack *stack_b);
 void	sort_five(t_stack *stack_a, t_stack *stack_b);

@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:32:51 by oandelin          #+#    #+#             */
-/*   Updated: 2023/06/24 20:53:28 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/03 11:56:40 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,39 +29,24 @@ void	sort_three(t_stack *stack)
 		move_rra_rrb(stack);
 		sort_three(stack);
 	}
-//	if(check_if_sorted(stack))
-//		exit(0);
 }
 
 void	sort_four(t_stack *stack_a, t_stack *stack_b)
 {
-	int min;
+	int	min;
 
 	if (stack_b->size > 0)
 		min = stack_b->size;
-	else min = 0;
+	else
+		min = 0;
 	if (check_if_sorted(stack_a))
-	 	return ;
+		return ;
 	if (stack_a->top->data == min)
 	{
 		pb(stack_a, stack_b);
 		sort_three(stack_a);
 		pa(stack_a, stack_b);
 	}
-	// else if (stack_a->top->next->data == min)
-	// {
-	// 	move_sa_sb(stack_a);
-	// 	pb(stack_a, stack_b);
-	// 	sort_three(stack_a);
-	// 	pa(stack_a, stack_b);
-	// }
-	// else if (stack_a->end->data == min)
-	// {
-	// 	move_rra_rrb(stack_a);
-	// 	pb(stack_a, stack_b);
-	// 	sort_three(stack_a);
-	// 	pa(stack_a, stack_b);
-	// }
 	else
 	{
 		move_rra_rrb(stack_a);
@@ -82,8 +67,8 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	if (stack_a->top->data == 1)
 	{
 		pb(stack_a, stack_b);
-		while(stack_a->top->data != 0)
-				move_ra_rb(stack_a);
+		while (stack_a->top->data != 0)
+			move_ra_rb(stack_a);
 		pb(stack_a, stack_b);
 		sort_three(stack_a);
 		move_ra_rb(stack_b);
@@ -92,70 +77,46 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	}
 	else
 		move_ra_rb(stack_a);
-	if(check_if_sorted(stack_a) && stack_a->size == 5)
+	if (check_if_sorted(stack_a) && stack_a->size == 5)
 		return ;
-	else 
+	else
 		sort_five(stack_a, stack_b);
 }
 
-
-// 	if(stack_a->size == 3)
-// 	{
-// 		sort_three(stack_a);
-// 		pa(stack_a, stack_b);
-// 	}
-// 	if (stack_a->top->data == 1 || stack_a->top->data == 2)
-//  	{
-// 		pb(stack_a, stack_b);
-// 		sort_five(stack_a, stack_b);
-// 	}
-// 	// else if (stack_a->end->data == 1 || stack_a->end->data == 2)
-// 	// {
-// 	// 	move_rra_rrb(stack_a);
-// 	// 	pb(stack_a, stack_b);
-// 	// 	sort_four(stack_a, stack_b);
-// 	// }
-// 	// else 
-// 	// {
-// 	// 	move_ra_rb(stack_a);
-// 	// 	sort_five(stack_a, stack_b);
-// 	// }
-	
-// }
-
-// }
-
-
-void radix(t_stack *stack_a, t_stack *stack_b)
+void	radix_sort(t_stack *stack_a, t_stack *stack_b)
 {
-	t_node *curr;
-	int num;
-	int	maxnum;
-	int bit;
+	int		maxnum;
+	int		bit;
 
 	bit = 0;	
 	maxnum = stack_a->size;
 	while (bit < 9)
 	{	
-		if(check_if_sorted(stack_a) && stack_a->size == maxnum)
-		 	return;
-		curr = stack_a->top;
-		num = 1;
-		while (num <= maxnum)
-		{
-			if ((curr->data >> bit & 1) == 1)
-				move_ra_rb(stack_a);
-			else
-				pb(stack_a, stack_b);
-			curr = stack_a->top;
-			// if(check_if_sorted(stack_a) && stack_a->size == maxnum)
-			// 	return;
-			num++;
-		}
+		if (check_if_sorted(stack_a) && stack_a->size == maxnum)
+			return ;
+		process_bit(stack_a, stack_b, bit, maxnum);
 		while (stack_b->size > 0)
 			pa(stack_a, stack_b);
-		if(check_if_sorted(stack_a))
+		if (check_if_sorted(stack_a))
 			exit(0);
 		bit++;
+	}
+}
+
+void	process_bit(t_stack *stack_a, t_stack *stack_b, int bit, int maxnum)
+{
+	t_node	*curr;
+	int		num;
+
+	curr = stack_a->top;
+	num = 1;
+	while (num <= maxnum)
+	{
+		if ((curr->data >> bit & 1) == 1)
+			move_ra_rb(stack_a);
+		else
+			pb(stack_a, stack_b);
+		curr = stack_a->top;
+		num++;
 	}
 }
