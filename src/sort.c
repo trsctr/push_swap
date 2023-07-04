@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/20 16:32:51 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 14:59:52 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:55:41 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,22 @@ void	sort_three(t_stack *stack)
 	if (stack->end->data < stack->top->data)
 	{	
 		move_ra_rb(stack);
+		if (is_sorted(stack))
+			return ;
 		sort_three(stack);
 	}
 	else if (stack->top->data > stack->top->next->data)
 	{
 		move_sa_sb(stack);
+		if (is_sorted(stack))
+			return ;
 		sort_three(stack);
 	}
 	else if (stack->top->next->data > stack->end->data)
 	{
 		move_rra_rrb(stack);
+		if (is_sorted(stack))
+			return ;
 		sort_three(stack);
 	}
 }
@@ -39,7 +45,7 @@ void	sort_four(t_stack *stack_a, t_stack *stack_b)
 		min = stack_b->size;
 	else
 		min = 0;
-	if (is_sorted(stack_a))
+	if (is_sorted(stack_a) && stack_b->size == 0)
 		return ;
 	if (stack_a->top->data == min)
 	{
@@ -56,13 +62,13 @@ void	sort_four(t_stack *stack_a, t_stack *stack_b)
 
 void	sort_five(t_stack *stack_a, t_stack *stack_b)
 {
+	if (is_sorted(stack_a) && stack_a->size == 5)
+		return ;
 	if (stack_a->top->data == 0)
 	{
 		pb(stack_a, stack_b);
 		sort_four(stack_a, stack_b);
 		pa(stack_a, stack_b);
-		if (is_sorted(stack_a) && stack_a->size == 5)
-			return ;
 	}
 	if (stack_a->top->data == 1)
 	{
@@ -77,10 +83,7 @@ void	sort_five(t_stack *stack_a, t_stack *stack_b)
 	}
 	else
 		move_ra_rb(stack_a);
-	if (is_sorted(stack_a) && stack_a->size == 5)
-		return ;
-	else
-		sort_five(stack_a, stack_b);
+	sort_five(stack_a, stack_b);
 }
 
 void	radix_sort(t_stack *stack_a, t_stack *stack_b)
@@ -90,14 +93,14 @@ void	radix_sort(t_stack *stack_a, t_stack *stack_b)
 
 	bit = 0;
 	maxnum = stack_a->size;
-	while (bit < 9)
+	while (bit < 16)
 	{	
 		if (is_sorted(stack_a) && stack_a->size == maxnum)
 			return ;
 		process_bit(stack_a, stack_b, bit, maxnum);
 		while (stack_b->size > 0)
 			pa(stack_a, stack_b);
-		if (is_sorted(stack_a))
+		if (is_sorted(stack_a) && stack_a->size == maxnum)
 			exit(0);
 		bit++;
 	}

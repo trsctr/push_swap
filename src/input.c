@@ -6,11 +6,12 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 14:59:03 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 15:11:36 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+#include "stdio.h"
 
 t_stack	*store_input(char **argv, int argc)
 {
@@ -20,6 +21,8 @@ t_stack	*store_input(char **argv, int argc)
 	stack->stack_id = 'a';
 	if (argc > 2)
 	{	
+		if (valid_args(argv, argc))
+			error();
 		store_input_from_args(stack, argv, argc);
 	}
 	else
@@ -62,7 +65,7 @@ void	store_input_from_string(t_stack *stack, char *input)
 	if (input[counter] == '\0')
 		error();
 	args = ft_split(input, ' ');
-	if (is_valid_input(args))
+	if (valid_string(args))
 		error();
 	counter = 0;
 	while (args[counter])

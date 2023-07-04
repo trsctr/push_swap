@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 14:59:24 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 17:08:59 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
+	int		i;
 
+	i = 0;
 	if (argc < 2)
 		exit(0);
-	if (argc > 2 && check_input(argv, argc))
-		error();
+	if (argc == 2 && is_empty_string(argv[1]))
+		exit(0);
 	stack_a = store_input(argv, argc);
 	create_stack(&stack_b);
 	stack_b->stack_id = 'b';

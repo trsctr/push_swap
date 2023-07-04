@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:52:58 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 15:00:46 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 16:23:30 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ void	destroy_stack(t_stack *stack)
 	while (curr->next)
 	{
 		temp = curr;
-		free(temp);
 		curr = curr->next;
+		free(temp);
 	}
 	free(stack->end);
 	free(stack);
