@@ -6,12 +6,11 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 17:15:01 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/04 15:11:36 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 21:24:47 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-#include "stdio.h"
 
 t_stack	*store_input(char **argv, int argc)
 {

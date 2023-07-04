@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 15:41:35 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/03 14:58:28 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 19:58:49 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,22 @@ void	swap(t_stack *stack)
 {
 	t_node	*newtop;
 	t_node	*oldtop;
+	t_node	*temp;
 
-	if (stack->size == 1)
+	if (stack->size < 2)
 		return ;
 	oldtop = stack->top;
-	newtop = stack->top->next;
-	oldtop->next = newtop->next;
+	newtop = oldtop->next;
+	temp = newtop->next;
+	newtop->prev = NULL;
+	newtop->next = oldtop;
+	oldtop->prev = newtop;
+	oldtop->next = temp;
+	if (temp != NULL)
+		temp->prev = oldtop;
 	stack->top = newtop;
-	stack->top->next = oldtop;
-	newtop->place = 0;
-	oldtop->place = 1;
+	stack->top->place = 0;
+	stack->top->next->place = 1;
 }
 
 void	rotate(t_stack *stack)
@@ -58,9 +64,11 @@ void	reverse_rotate(t_stack *stack)
 	t_node	*oldtop;
 	t_node	*temp;
 
+	if (stack->size == 0)
+		return ;
 	oldtop = stack->top;
 	newtop = stack->end;
-	stack->end = newtop->prev;
+	stack->end = stack->end->prev;
 	newtop->prev = NULL;
 	newtop->place = 0;
 	stack->end->next = NULL;

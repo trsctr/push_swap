@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:33:00 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/04 17:15:51 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/04 22:12:19 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	valid_string(char **input)
 		digit = 0;
 		if (input[arg][0] == '-')
 			digit++;
+		if (input[arg][digit] == '\0')
+			return (-1);
 		while (input[arg][digit])
 		{
 			if (!ft_isdigit(input[arg][digit]))
@@ -58,6 +60,8 @@ int	valid_args(char **argv, int argc)
 		digit = 0;
 		if (argv[arg][0] == '-')
 			digit++;
+		if (argv[arg][digit] == '\0')
+			return (-1);
 		while (argv[arg][digit])
 		{
 			if (!ft_isdigit(argv[arg][digit]))
