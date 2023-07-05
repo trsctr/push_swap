@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 16:28:33 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/04 19:59:55 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:25:42 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ int	main(int argc, char **argv)
 {
 	t_stack	*stack_a;
 	t_stack	*stack_b;
-	int		i;
 
-	i = 0;
 	if (argc < 2)
 		exit(0);
 	if (argc == 2 && is_empty_string(argv[1]))

@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 13:03:32 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/04 17:10:26 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:23:42 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_addtotop(t_stack *stack, t_node *node);
 void	ft_addtoend(t_stack *stack, t_node *node);
 
 // STACK UTILS
-void	print_stack(t_stack *stack);
+
 int		scan_stack(t_stack *stack, int data);
 void	destroy_stack(t_stack *stack);
 

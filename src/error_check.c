@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:33:00 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/04 22:12:19 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:24:16 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	is_empty_string(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] == ' ')
+	while (str[i] == ' ' || str[i] == '\t')
 			i++;
 	if (str[i] == '\0')
 		return (1);
@@ -70,31 +70,6 @@ int	valid_args(char **argv, int argc)
 		}
 		arg++;
 	}
-	return (0);
-}
-
-int	is_sorted(t_stack *stack)
-{
-	int		temp;
-	int		count;
-	t_node	*curr;
-
-	count = 0;
-	curr = stack->top;
-	temp = curr->data;
-	while (curr->next != NULL)
-	{
-		curr = curr->next;
-		if (curr->data > temp)
-		{
-			temp = curr->data;
-			count++;
-		}
-	}
-	if (curr->data > temp)
-		count++;
-	if (count == curr->place)
-		return (1);
 	return (0);
 }
 

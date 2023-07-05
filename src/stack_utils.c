@@ -6,7 +6,7 @@
 /*   By: oandelin <oandelin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/03 14:52:58 by oandelin          #+#    #+#             */
-/*   Updated: 2023/07/04 16:23:30 by oandelin         ###   ########.fr       */
+/*   Updated: 2023/07/05 13:24:25 by oandelin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,29 @@ int	scan_stack(t_stack *stack, int data)
 	return (0);
 }
 
-void	print_stack(t_stack *stack)
+int	is_sorted(t_stack *stack)
 {
+	int		temp;
+	int		count;
 	t_node	*curr;
 
-	ft_printf("stack id: %c, stack size %d\n", stack->stack_id, stack->size);
-	if (stack->size == 0)
-		return ;
+	count = 0;
 	curr = stack->top;
-	ft_printf("node place %d, node content: %d\n", curr->place, curr->data);
+	temp = curr->data;
 	while (curr->next != NULL)
 	{
 		curr = curr->next;
-		ft_printf("node place %d, node content: %d\n", curr->place, curr->data);
+		if (curr->data > temp)
+		{
+			temp = curr->data;
+			count++;
+		}
 	}
+	if (curr->data > temp)
+		count++;
+	if (count == curr->place)
+		return (1);
+	return (0);
 }
 
 void	destroy_stack(t_stack *stack)
